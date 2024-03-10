@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Slider</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+
+    .slider-container {
+      max-width: 800px;
+      margin: 50px auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+    }
+
+    .controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .control-btn {
+      background: #3498db;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="slider-container">
+  <div class="slider">
+    <div class="slide">
+      <img src="burger.jpeg" alt="Image 1">
+    </div>
+    <div class="slide">
+      <img src="HDwallpaper.jpg" alt="Image 2">
+    </div>
+    <div class="slide">
+      <img src="fish.jpeg" alt="Image 3">
+    </div>
+    
+  </div>
+
+  <div class="controls">
+    <button class="control-btn" onclick="prevSlide()">‹</button>
+    <button class="control-btn" onclick="nextSlide()">›</button>
+  </div>
+</div>
+<script>
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+  
+    function updateSlider() {
+      document.querySelector('.slider').style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+  
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateSlider();
+    }
+  
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      updateSlider();
+    }
+    setInterval(() => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlider();
+  }, 3000);
+  </script>
+
+
+</body>
+</html>
